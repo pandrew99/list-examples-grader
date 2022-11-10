@@ -19,8 +19,8 @@ then
         if [ $? -eq 0 ]
         then
             echo "All tests passed"
-        else
-            echo "Some tests failed"
+            echo Your grade is 100%
+            exit 0
         fi
         t=$(grep -i "Tests run" output.txt)
         mails=$(echo $t | tr " " "\n")
@@ -39,12 +39,17 @@ then
             fi
             counter=$((counter+1))
         done
-        echo You passed "$((total - passed))" / $total tests
-        echo Your grade is "$((((total - passed)/total)*100))"%
+        if [ "$passed" != "" ]
+        then
+            echo You passed "$((total - passed))" / $total tests
+            echo Your grade is "$((((total - passed)*100/total*100)/100))"%
+        fi
     else
-        echo "Compilation failed. Please check your code."
+        echo Compilation failed. Please check your code.
+        echo Your grade is 0%
     fi
 else
-    echo "ListExamples does not exist"
+    echo "ListExamples.java not found. Are you sure it's in the right directory?"
+    echo Your grade is 0%
     exit 1
 fi
