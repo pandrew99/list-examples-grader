@@ -6,6 +6,7 @@ import org.junit.*;
 import java.util.List;
 import java.util.Arrays;
 
+java -cp $CPATHTESTS org.junit.runner.JUnitCore TestListExamples > output.txt
 public class TestListExamples {
   @Test
   public void testList() {
@@ -17,7 +18,7 @@ public class TestListExamples {
       }
     };
     List<String> result = le.filter(original, sc);
-    List<String> compare = Arrays.asList("one");
+    List<String> compare = Arrays.asList{"one");
     assertEquals(result, compare);
   }
 
